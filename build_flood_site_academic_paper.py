@@ -843,14 +843,7 @@ with PdfPages(OUT, metadata={
     # Page 8 — data and simulation.
     fig, ax = new_page(pdf, 8, "Data priorities and simulation")
     y = H - .93
-    y = section(ax, "8", "Decision value for district teams", y)
-    y = para(ax, "The transparent report-history queue remains the reference. "
-             "The proposed model ranks unfamiliar cells better on the report-site "
-             "proxy, but at the top 5% of a full district queue both methods "
-             "capture 1.27% of emerging sites [15]. A district should freeze "
-             "full queues before storms and compare verified findings per "
-             "staff-hour, travel, and actions in a new rainy season.", y)
-    y = section(ax, "9", "From triage to rainfall-conditioned planning", y)
+    y = section(ax, "8", "From triage to rainfall-conditioned planning", y)
     y = para(ax, "The present site-ranking CNN contains no rain channel. "
              "A follow-up experiment added five rainfall windows strictly before "
              "each decision time, using cached hourly district-point estimates "
@@ -881,7 +874,7 @@ with PdfPages(OUT, metadata={
         cell_text(ax, 2.45, y, desc, size=7.9)
         ax.plot([LEFT, RIGHT], [y - .17, y - .17], color=LIGHT, lw=.5)
     y -= .35
-    y = subsection(ax, "9.1", "Mapped drainage assets are a starting point", y)
+    y = subsection(ax, "8.1", "Mapped drainage assets are a starting point", y)
     y = para(ax, "A public BMA ArcGIS service supplies 81,574 geocoded storm-drain "
              "pipe polylines, as well as canal, pump, and gate layers [12]. The "
              "geometry does not verify every street inlet, pipe junction, "
@@ -889,7 +882,7 @@ with PdfPages(OUT, metadata={
              "suggest candidate gravity direction, but their datum and line "
              "ordering require validation. A static pipe map alone cannot "
              "explain whether a particular storm can drain on time.", y)
-    y = subsection(ax, "9.2", "A staged validation program", y)
+    y = subsection(ax, "8.2", "A staged validation program", y)
     y = para(ax, "First, freeze the triage queue and measure later reported sites "
              "and field findings. Second, assemble strict time-matched rainfall, "
              "drainage state, and independent wet and dry observations; compare a "
@@ -904,8 +897,8 @@ with PdfPages(OUT, metadata={
     # Page 9 — hackathon proposal, validation, conclusion.
     fig, ax = new_page(pdf, 9, "Prototype and BMA collaboration")
     y = H - .93
-    y = section(ax, "10", "Hackathon prototype and BMA collaboration", y)
-    y = subsection(ax, "10.1", "A map that makes the decision visible", y)
+    y = section(ax, "9", "Hackathon prototype and BMA collaboration", y)
+    y = subsection(ax, "9.1", "A map that makes the decision visible", y)
     y = para(ax, "The proposed hackathon demonstration lets a district choose "
              "a date and a fraction of unfamiliar cells to review, then "
              "compares two rankings: nearby-report history and the CNN. Reviewers can "
@@ -914,7 +907,7 @@ with PdfPages(OUT, metadata={
              "would have appeared within the same candidate fraction. The model, labels, "
              "and backtest are implemented; this interface is a proposed "
              "presentation layer, not a live flood alert.", y)
-    y = subsection(ax, "10.2", "What to test together", y)
+    y = subsection(ax, "9.2", "What to test together", y)
     y = para(ax, "A useful BMA collaboration would begin in shadow mode in one "
              "or more districts. Before storms, freeze BMA's existing risk-point "
              "or inspection queue and the model queue. After field visits, log "
@@ -924,7 +917,7 @@ with PdfPages(OUT, metadata={
              "secondary measures include total verified sites, travel, and "
              "response time. BMA's current FY2569 risk-point targets provide "
              "the operational context, not proof of model impact [3].", y)
-    y = subsection(ax, "10.3", "Data partnership for the next capability", y)
+    y = subsection(ax, "9.3", "Data partnership for the next capability", y)
     y = para(ax, "District feedback on false leads and overlooked sites would "
              "improve the triage model. Time-stamped radar or gauge rain, "
              "pump/gate operation, canal levels, and independently verified wet "
@@ -944,7 +937,7 @@ with PdfPages(OUT, metadata={
     arrow(ax, (5.19, top - .36), (5.42, top - .36))
     y = fig_caption(ax, 9, "Proposed collaboration path. Each stage needs its own "
                     "measured outcome before the next use is justified.", top - .86)
-    y = section(ax, "11", "Conclusion and evidence boundary", y)
+    y = section(ax, "10", "Conclusion and evidence boundary", y)
     y = para(ax, "The promising result is narrower than a flood forecast: "
              "among unfamiliar cells, spatial context raised mean rank of "
              "later reported new sites by 5.53 percentile points in held-out "
