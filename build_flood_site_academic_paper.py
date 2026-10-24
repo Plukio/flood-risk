@@ -315,8 +315,8 @@ with PdfPages(OUT, metadata={
              "2025 brought 2,326 grouped Traffy flood-report site events across "
              "Bangkok, including 471 first-in-year sites [1,8]. Preparing only "
              "for familiar hotspots leaves emerging locations harder to find. "
-             "A ranked map could direct district attention to them before the "
-             "next storm.", y)
+             "The proposed spatial model could help districts prioritize checks "
+             "at such locations before the next storm.", y)
     y = para(ax, "The ranking question is concrete: as a district reviews more "
              "map squares, which new trouble spots enter the list first? "
              "Past reports are a useful starting point [4]. "
