@@ -298,12 +298,11 @@ with PdfPages(OUT, metadata={
              "Traffy during Q4 2025 across "
              "districts held out from fitting and model selection. Among 393 new "
              "sites in squares with no prior-year report, screening the top 5% "
-             "captured 14.0% of sites versus 6.8% for history alone; mean rank "
-             "percentile rose from 60.2 to 65.7. When all district squares "
-             "competed for a top-5% shortlist, both methods captured 1.27% of "
-             "emerging sites. The gain suggests a way to direct "
-             "attention toward overlooked locations, while field validation and "
-             "a useful full-district inspection allocation remain open tasks.", y,
+             "captured 14.0% of sites versus 6.8% for history alone, a twofold "
+             "gain of about 28 emerging sites at equal area coverage. Earlier "
+             "discovery in dense commercial or transport areas could limit "
+             "repair, business, and travel losses if it enables effective "
+             "action. Illustrative scenarios show the economic value at stake.", y,
              size=9.8, lead=.205, after=.18)
     ax.text(LEFT, y, "Keywords", size=8.5, color=BLUE, weight="bold", va="top")
     ax.text(LEFT + .77, y, "urban flooding; spatial ranking; emerging sites; "
