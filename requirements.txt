@@ -1,0 +1,15 @@
+numpy>=2,<3
+scikit-learn>=1.5,<2
+osmium>=4,<5
+shapely>=2,<3
+pyproj>=3,<4
+scipy>=1.13,<2
+requests>=2.32,<3
+rasterio>=1.4,<2
+planetary-computer>=1,<2
+pyshp>=2.3,<3
+matplotlib>=3.11,<4
+networkx>=3,<4
+torch>=2.5,<3
+xarray>=2025.1
+netCDF4>=1.7,<2

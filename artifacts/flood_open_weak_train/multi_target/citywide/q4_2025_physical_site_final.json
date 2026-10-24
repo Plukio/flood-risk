@@ -1,0 +1,1322 @@
+{
+  "built_utc": "2026-10-24T06:50:04+00:00",
+  "task": "First-in-prior-year reported physical-site event at a fixed daily district inspection budget",
+  "source_selection": "Choose between two site-trained arms by Jan-Sep source-district 250m new-site capture; each arm's history blend was also selected there",
+  "q4_2025": {
+    "all": {
+      "events": 2326,
+      "nearby_history": {
+        "hits": 809.0,
+        "capture_pct": 34.781
+      },
+      "old_cnn": {
+        "hits": 817.38,
+        "capture_pct": 35.141
+      },
+      "site_new_only": {
+        "hits": 816.7,
+        "capture_pct": 35.112
+      },
+      "site_new_plus_group_mask": {
+        "hits": 805.2367,
+        "capture_pct": 34.619
+      },
+      "source_selected": {
+        "hits": 816.0967,
+        "capture_pct": 35.086
+      }
+    },
+    "new_site_250m": {
+      "events": 471,
+      "nearby_history": {
+        "hits": 26.74,
+        "capture_pct": 5.677
+      },
+      "old_cnn": {
+        "hits": 33.42,
+        "capture_pct": 7.096
+      },
+      "site_new_only": {
+        "hits": 43.76,
+        "capture_pct": 9.291
+      },
+      "site_new_plus_group_mask": {
+        "hits": 37.3967,
+        "capture_pct": 7.94
+      },
+      "source_selected": {
+        "hits": 47.1567,
+        "capture_pct": 10.012
+      }
+    },
+    "250_to_750m": {
+      "events": 428,
+      "nearby_history": {
+        "hits": 26.74,
+        "capture_pct": 6.248
+      },
+      "old_cnn": {
+        "hits": 31.42,
+        "capture_pct": 7.341
+      },
+      "site_new_only": {
+        "hits": 42.76,
+        "capture_pct": 9.991
+      },
+      "site_new_plus_group_mask": {
+        "hits": 36.3967,
+        "capture_pct": 8.504
+      },
+      "source_selected": {
+        "hits": 46.1567,
+        "capture_pct": 10.784
+      }
+    },
+    "over_750m": {
+      "events": 43,
+      "nearby_history": {
+        "hits": 0.0,
+        "capture_pct": 0.0
+      },
+      "old_cnn": {
+        "hits": 2.0,
+        "capture_pct": 4.651
+      },
+      "site_new_only": {
+        "hits": 1.0,
+        "capture_pct": 2.326
+      },
+      "site_new_plus_group_mask": {
+        "hits": 1.0,
+        "capture_pct": 2.326
+      },
+      "source_selected": {
+        "hits": 1.0,
+        "capture_pct": 2.326
+      }
+    },
+    "new_and_zero_own_cell_history": {
+      "events": 393,
+      "nearby_history": {
+        "hits": 17.74,
+        "capture_pct": 4.514
+      },
+      "old_cnn": {
+        "hits": 24.42,
+        "capture_pct": 6.214
+      },
+      "site_new_only": {
+        "hits": 34.76,
+        "capture_pct": 8.845
+      },
+      "site_new_plus_group_mask": {
+        "hits": 28.3967,
+        "capture_pct": 7.226
+      },
+      "source_selected": {
+        "hits": 38.1567,
+        "capture_pct": 9.709
+      }
+    }
+  },
+  "folds": [
+    {
+      "fold": 1,
+      "source_selected_arm": "site_new_only",
+      "source_selected_alpha": 0.75,
+      "new_events_250m": 113,
+      "radii": {
+        "site_new_only": {
+          "100": {
+            "all": {
+              "events": 466,
+              "model_hits": 171.16,
+              "model_capture_pct": 36.73
+            },
+            "new_site": {
+              "events": 257,
+              "model_hits": 51.6,
+              "model_capture_pct": 20.078
+            },
+            "under_100m": {
+              "events": 209,
+              "model_hits": 119.56,
+              "model_capture_pct": 57.206
+            },
+            "100_to_250m": {
+              "events": 128,
+              "model_hits": 29.6,
+              "model_capture_pct": 23.125
+            },
+            "250_to_750m": {
+              "events": 117,
+              "model_hits": 22.0,
+              "model_capture_pct": 18.803
+            },
+            "over_750m": {
+              "events": 12,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 466,
+              "model_hits": 171.16,
+              "model_capture_pct": 36.73
+            }
+          },
+          "250": {
+            "all": {
+              "events": 422,
+              "model_hits": 154.32,
+              "model_capture_pct": 36.569
+            },
+            "new_site": {
+              "events": 113,
+              "model_hits": 17.0,
+              "model_capture_pct": 15.044
+            },
+            "under_100m": {
+              "events": 195,
+              "model_hits": 107.72,
+              "model_capture_pct": 55.241
+            },
+            "100_to_250m": {
+              "events": 114,
+              "model_hits": 29.6,
+              "model_capture_pct": 25.965
+            },
+            "250_to_750m": {
+              "events": 101,
+              "model_hits": 17.0,
+              "model_capture_pct": 16.832
+            },
+            "over_750m": {
+              "events": 12,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 422,
+              "model_hits": 154.32,
+              "model_capture_pct": 36.569
+            }
+          },
+          "500": {
+            "all": {
+              "events": 366,
+              "model_hits": 139.32,
+              "model_capture_pct": 38.066
+            },
+            "new_site": {
+              "events": 26,
+              "model_hits": 2.0,
+              "model_capture_pct": 7.692
+            },
+            "under_100m": {
+              "events": 185,
+              "model_hits": 100.32,
+              "model_capture_pct": 54.227
+            },
+            "100_to_250m": {
+              "events": 92,
+              "model_hits": 26.0,
+              "model_capture_pct": 28.261
+            },
+            "250_to_750m": {
+              "events": 77,
+              "model_hits": 13.0,
+              "model_capture_pct": 16.883
+            },
+            "over_750m": {
+              "events": 12,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 366,
+              "model_hits": 139.32,
+              "model_capture_pct": 38.066
+            }
+          }
+        },
+        "site_new_plus_group_mask": {
+          "100": {
+            "all": {
+              "events": 466,
+              "model_hits": 167.16,
+              "model_capture_pct": 35.871
+            },
+            "new_site": {
+              "events": 257,
+              "model_hits": 47.6,
+              "model_capture_pct": 18.521
+            },
+            "under_100m": {
+              "events": 209,
+              "model_hits": 119.56,
+              "model_capture_pct": 57.206
+            },
+            "100_to_250m": {
+              "events": 128,
+              "model_hits": 29.6,
+              "model_capture_pct": 23.125
+            },
+            "250_to_750m": {
+              "events": 117,
+              "model_hits": 18.0,
+              "model_capture_pct": 15.385
+            },
+            "over_750m": {
+              "events": 12,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 466,
+              "model_hits": 167.16,
+              "model_capture_pct": 35.871
+            }
+          },
+          "250": {
+            "all": {
+              "events": 422,
+              "model_hits": 151.32,
+              "model_capture_pct": 35.858
+            },
+            "new_site": {
+              "events": 113,
+              "model_hits": 14.0,
+              "model_capture_pct": 12.389
+            },
+            "under_100m": {
+              "events": 195,
+              "model_hits": 107.72,
+              "model_capture_pct": 55.241
+            },
+            "100_to_250m": {
+              "events": 114,
+              "model_hits": 29.6,
+              "model_capture_pct": 25.965
+            },
+            "250_to_750m": {
+              "events": 101,
+              "model_hits": 14.0,
+              "model_capture_pct": 13.861
+            },
+            "over_750m": {
+              "events": 12,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 422,
+              "model_hits": 151.32,
+              "model_capture_pct": 35.858
+            }
+          },
+          "500": {
+            "all": {
+              "events": 366,
+              "model_hits": 135.32,
+              "model_capture_pct": 36.973
+            },
+            "new_site": {
+              "events": 26,
+              "model_hits": 1.0,
+              "model_capture_pct": 3.846
+            },
+            "under_100m": {
+              "events": 185,
+              "model_hits": 100.32,
+              "model_capture_pct": 54.227
+            },
+            "100_to_250m": {
+              "events": 92,
+              "model_hits": 26.0,
+              "model_capture_pct": 28.261
+            },
+            "250_to_750m": {
+              "events": 77,
+              "model_hits": 9.0,
+              "model_capture_pct": 11.688
+            },
+            "over_750m": {
+              "events": 12,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 366,
+              "model_hits": 135.32,
+              "model_capture_pct": 36.973
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "source_selected_arm": "site_new_plus_group_mask",
+      "source_selected_alpha": 0.5,
+      "new_events_250m": 98,
+      "radii": {
+        "site_new_only": {
+          "100": {
+            "all": {
+              "events": 538,
+              "model_hits": 201.56,
+              "model_capture_pct": 37.465
+            },
+            "new_site": {
+              "events": 250,
+              "model_hits": 38.76,
+              "model_capture_pct": 15.504
+            },
+            "under_100m": {
+              "events": 288,
+              "model_hits": 162.8,
+              "model_capture_pct": 56.528
+            },
+            "100_to_250m": {
+              "events": 145,
+              "model_hits": 30.76,
+              "model_capture_pct": 21.214
+            },
+            "250_to_750m": {
+              "events": 96,
+              "model_hits": 7.0,
+              "model_capture_pct": 7.292
+            },
+            "over_750m": {
+              "events": 9,
+              "model_hits": 1.0,
+              "model_capture_pct": 11.111
+            },
+            "raster_positive": {
+              "events": 538,
+              "model_hits": 201.56,
+              "model_capture_pct": 37.465
+            }
+          },
+          "250": {
+            "all": {
+              "events": 497,
+              "model_hits": 187.88,
+              "model_capture_pct": 37.803
+            },
+            "new_site": {
+              "events": 98,
+              "model_hits": 8.0,
+              "model_capture_pct": 8.163
+            },
+            "under_100m": {
+              "events": 274,
+              "model_hits": 154.12,
+              "model_capture_pct": 56.248
+            },
+            "100_to_250m": {
+              "events": 125,
+              "model_hits": 25.76,
+              "model_capture_pct": 20.608
+            },
+            "250_to_750m": {
+              "events": 89,
+              "model_hits": 7.0,
+              "model_capture_pct": 7.865
+            },
+            "over_750m": {
+              "events": 9,
+              "model_hits": 1.0,
+              "model_capture_pct": 11.111
+            },
+            "raster_positive": {
+              "events": 497,
+              "model_hits": 187.88,
+              "model_capture_pct": 37.803
+            }
+          },
+          "500": {
+            "all": {
+              "events": 423,
+              "model_hits": 165.16,
+              "model_capture_pct": 39.045
+            },
+            "new_site": {
+              "events": 27,
+              "model_hits": 2.0,
+              "model_capture_pct": 7.407
+            },
+            "under_100m": {
+              "events": 253,
+              "model_hits": 140.08,
+              "model_capture_pct": 55.368
+            },
+            "100_to_250m": {
+              "events": 100,
+              "model_hits": 18.08,
+              "model_capture_pct": 18.08
+            },
+            "250_to_750m": {
+              "events": 61,
+              "model_hits": 6.0,
+              "model_capture_pct": 9.836
+            },
+            "over_750m": {
+              "events": 9,
+              "model_hits": 1.0,
+              "model_capture_pct": 11.111
+            },
+            "raster_positive": {
+              "events": 423,
+              "model_hits": 165.16,
+              "model_capture_pct": 39.045
+            }
+          }
+        },
+        "site_new_plus_group_mask": {
+          "100": {
+            "all": {
+              "events": 538,
+              "model_hits": 198.26667,
+              "model_capture_pct": 36.853
+            },
+            "new_site": {
+              "events": 250,
+              "model_hits": 35.46667,
+              "model_capture_pct": 14.187
+            },
+            "under_100m": {
+              "events": 288,
+              "model_hits": 162.8,
+              "model_capture_pct": 56.528
+            },
+            "100_to_250m": {
+              "events": 145,
+              "model_hits": 28.76,
+              "model_capture_pct": 19.834
+            },
+            "250_to_750m": {
+              "events": 96,
+              "model_hits": 5.70667,
+              "model_capture_pct": 5.944
+            },
+            "over_750m": {
+              "events": 9,
+              "model_hits": 1.0,
+              "model_capture_pct": 11.111
+            },
+            "raster_positive": {
+              "events": 538,
+              "model_hits": 198.26667,
+              "model_capture_pct": 36.853
+            }
+          },
+          "250": {
+            "all": {
+              "events": 497,
+              "model_hits": 184.58667,
+              "model_capture_pct": 37.14
+            },
+            "new_site": {
+              "events": 98,
+              "model_hits": 6.70667,
+              "model_capture_pct": 6.844
+            },
+            "under_100m": {
+              "events": 274,
+              "model_hits": 154.12,
+              "model_capture_pct": 56.248
+            },
+            "100_to_250m": {
+              "events": 125,
+              "model_hits": 23.76,
+              "model_capture_pct": 19.008
+            },
+            "250_to_750m": {
+              "events": 89,
+              "model_hits": 5.70667,
+              "model_capture_pct": 6.412
+            },
+            "over_750m": {
+              "events": 9,
+              "model_hits": 1.0,
+              "model_capture_pct": 11.111
+            },
+            "raster_positive": {
+              "events": 497,
+              "model_hits": 184.58667,
+              "model_capture_pct": 37.14
+            }
+          },
+          "500": {
+            "all": {
+              "events": 423,
+              "model_hits": 161.28,
+              "model_capture_pct": 38.128
+            },
+            "new_site": {
+              "events": 27,
+              "model_hits": 2.0,
+              "model_capture_pct": 7.407
+            },
+            "under_100m": {
+              "events": 253,
+              "model_hits": 140.08,
+              "model_capture_pct": 55.368
+            },
+            "100_to_250m": {
+              "events": 100,
+              "model_hits": 16.08,
+              "model_capture_pct": 16.08
+            },
+            "250_to_750m": {
+              "events": 61,
+              "model_hits": 4.12,
+              "model_capture_pct": 6.754
+            },
+            "over_750m": {
+              "events": 9,
+              "model_hits": 1.0,
+              "model_capture_pct": 11.111
+            },
+            "raster_positive": {
+              "events": 423,
+              "model_hits": 161.28,
+              "model_capture_pct": 38.128
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "source_selected_arm": "site_new_plus_group_mask",
+      "source_selected_alpha": 0.5,
+      "new_events_250m": 73,
+      "radii": {
+        "site_new_only": {
+          "100": {
+            "all": {
+              "events": 363,
+              "model_hits": 117.16,
+              "model_capture_pct": 32.275
+            },
+            "new_site": {
+              "events": 172,
+              "model_hits": 21.32,
+              "model_capture_pct": 12.395
+            },
+            "under_100m": {
+              "events": 191,
+              "model_hits": 95.84,
+              "model_capture_pct": 50.178
+            },
+            "100_to_250m": {
+              "events": 96,
+              "model_hits": 17.32,
+              "model_capture_pct": 18.042
+            },
+            "250_to_750m": {
+              "events": 68,
+              "model_hits": 4.0,
+              "model_capture_pct": 5.882
+            },
+            "over_750m": {
+              "events": 8,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 363,
+              "model_hits": 117.16,
+              "model_capture_pct": 32.275
+            }
+          },
+          "250": {
+            "all": {
+              "events": 329,
+              "model_hits": 101.16,
+              "model_capture_pct": 30.748
+            },
+            "new_site": {
+              "events": 73,
+              "model_hits": 3.0,
+              "model_capture_pct": 4.11
+            },
+            "under_100m": {
+              "events": 174,
+              "model_hits": 80.84,
+              "model_capture_pct": 46.46
+            },
+            "100_to_250m": {
+              "events": 82,
+              "model_hits": 17.32,
+              "model_capture_pct": 21.122
+            },
+            "250_to_750m": {
+              "events": 65,
+              "model_hits": 3.0,
+              "model_capture_pct": 4.615
+            },
+            "over_750m": {
+              "events": 8,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 329,
+              "model_hits": 101.16,
+              "model_capture_pct": 30.748
+            }
+          },
+          "500": {
+            "all": {
+              "events": 300,
+              "model_hits": 95.16,
+              "model_capture_pct": 31.72
+            },
+            "new_site": {
+              "events": 24,
+              "model_hits": 1.0,
+              "model_capture_pct": 4.167
+            },
+            "under_100m": {
+              "events": 167,
+              "model_hits": 75.84,
+              "model_capture_pct": 45.413
+            },
+            "100_to_250m": {
+              "events": 68,
+              "model_hits": 16.32,
+              "model_capture_pct": 24.0
+            },
+            "250_to_750m": {
+              "events": 58,
+              "model_hits": 3.0,
+              "model_capture_pct": 5.172
+            },
+            "over_750m": {
+              "events": 7,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 300,
+              "model_hits": 95.16,
+              "model_capture_pct": 31.72
+            }
+          }
+        },
+        "site_new_plus_group_mask": {
+          "100": {
+            "all": {
+              "events": 363,
+              "model_hits": 119.85,
+              "model_capture_pct": 33.017
+            },
+            "new_site": {
+              "events": 172,
+              "model_hits": 24.01,
+              "model_capture_pct": 13.959
+            },
+            "under_100m": {
+              "events": 191,
+              "model_hits": 95.84,
+              "model_capture_pct": 50.178
+            },
+            "100_to_250m": {
+              "events": 96,
+              "model_hits": 15.32,
+              "model_capture_pct": 15.958
+            },
+            "250_to_750m": {
+              "events": 68,
+              "model_hits": 8.69,
+              "model_capture_pct": 12.779
+            },
+            "over_750m": {
+              "events": 8,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 363,
+              "model_hits": 119.85,
+              "model_capture_pct": 33.017
+            }
+          },
+          "250": {
+            "all": {
+              "events": 329,
+              "model_hits": 103.85,
+              "model_capture_pct": 31.565
+            },
+            "new_site": {
+              "events": 73,
+              "model_hits": 7.69,
+              "model_capture_pct": 10.534
+            },
+            "under_100m": {
+              "events": 174,
+              "model_hits": 80.84,
+              "model_capture_pct": 46.46
+            },
+            "100_to_250m": {
+              "events": 82,
+              "model_hits": 15.32,
+              "model_capture_pct": 18.683
+            },
+            "250_to_750m": {
+              "events": 65,
+              "model_hits": 7.69,
+              "model_capture_pct": 11.831
+            },
+            "over_750m": {
+              "events": 8,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 329,
+              "model_hits": 103.85,
+              "model_capture_pct": 31.565
+            }
+          },
+          "500": {
+            "all": {
+              "events": 300,
+              "model_hits": 97.85,
+              "model_capture_pct": 32.617
+            },
+            "new_site": {
+              "events": 24,
+              "model_hits": 3.0,
+              "model_capture_pct": 12.5
+            },
+            "under_100m": {
+              "events": 167,
+              "model_hits": 74.84,
+              "model_capture_pct": 44.814
+            },
+            "100_to_250m": {
+              "events": 68,
+              "model_hits": 15.32,
+              "model_capture_pct": 22.529
+            },
+            "250_to_750m": {
+              "events": 58,
+              "model_hits": 7.69,
+              "model_capture_pct": 13.259
+            },
+            "over_750m": {
+              "events": 7,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 300,
+              "model_hits": 97.85,
+              "model_capture_pct": 32.617
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "source_selected_arm": "site_new_only",
+      "source_selected_alpha": 1.0,
+      "new_events_250m": 103,
+      "radii": {
+        "site_new_only": {
+          "100": {
+            "all": {
+              "events": 689,
+              "model_hits": 251.4,
+              "model_capture_pct": 36.488
+            },
+            "new_site": {
+              "events": 257,
+              "model_hits": 32.08,
+              "model_capture_pct": 12.482
+            },
+            "under_100m": {
+              "events": 432,
+              "model_hits": 219.32,
+              "model_capture_pct": 50.769
+            },
+            "100_to_250m": {
+              "events": 142,
+              "model_hits": 24.08,
+              "model_capture_pct": 16.958
+            },
+            "250_to_750m": {
+              "events": 107,
+              "model_hits": 8.0,
+              "model_capture_pct": 7.477
+            },
+            "over_750m": {
+              "events": 8,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 689,
+              "model_hits": 251.4,
+              "model_capture_pct": 36.488
+            }
+          },
+          "250": {
+            "all": {
+              "events": 581,
+              "model_hits": 195.96,
+              "model_capture_pct": 33.728
+            },
+            "new_site": {
+              "events": 103,
+              "model_hits": 7.0,
+              "model_capture_pct": 6.796
+            },
+            "under_100m": {
+              "events": 365,
+              "model_hits": 174.32,
+              "model_capture_pct": 47.759
+            },
+            "100_to_250m": {
+              "events": 113,
+              "model_hits": 14.64,
+              "model_capture_pct": 12.956
+            },
+            "250_to_750m": {
+              "events": 96,
+              "model_hits": 7.0,
+              "model_capture_pct": 7.292
+            },
+            "over_750m": {
+              "events": 7,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 581,
+              "model_hits": 195.96,
+              "model_capture_pct": 33.728
+            }
+          },
+          "500": {
+            "all": {
+              "events": 479,
+              "model_hits": 162.76,
+              "model_capture_pct": 33.979
+            },
+            "new_site": {
+              "events": 19,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "under_100m": {
+              "events": 318,
+              "model_hits": 145.96,
+              "model_capture_pct": 45.899
+            },
+            "100_to_250m": {
+              "events": 81,
+              "model_hits": 9.8,
+              "model_capture_pct": 12.099
+            },
+            "250_to_750m": {
+              "events": 73,
+              "model_hits": 7.0,
+              "model_capture_pct": 9.589
+            },
+            "over_750m": {
+              "events": 7,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 479,
+              "model_hits": 162.76,
+              "model_capture_pct": 33.979
+            }
+          }
+        },
+        "site_new_plus_group_mask": {
+          "100": {
+            "all": {
+              "events": 689,
+              "model_hits": 246.56,
+              "model_capture_pct": 35.785
+            },
+            "new_site": {
+              "events": 257,
+              "model_hits": 27.24,
+              "model_capture_pct": 10.599
+            },
+            "under_100m": {
+              "events": 432,
+              "model_hits": 219.32,
+              "model_capture_pct": 50.769
+            },
+            "100_to_250m": {
+              "events": 142,
+              "model_hits": 23.24,
+              "model_capture_pct": 16.366
+            },
+            "250_to_750m": {
+              "events": 107,
+              "model_hits": 4.0,
+              "model_capture_pct": 3.738
+            },
+            "over_750m": {
+              "events": 8,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 689,
+              "model_hits": 246.56,
+              "model_capture_pct": 35.785
+            }
+          },
+          "250": {
+            "all": {
+              "events": 581,
+              "model_hits": 192.12,
+              "model_capture_pct": 33.067
+            },
+            "new_site": {
+              "events": 103,
+              "model_hits": 4.0,
+              "model_capture_pct": 3.883
+            },
+            "under_100m": {
+              "events": 365,
+              "model_hits": 174.32,
+              "model_capture_pct": 47.759
+            },
+            "100_to_250m": {
+              "events": 113,
+              "model_hits": 13.8,
+              "model_capture_pct": 12.212
+            },
+            "250_to_750m": {
+              "events": 96,
+              "model_hits": 4.0,
+              "model_capture_pct": 4.167
+            },
+            "over_750m": {
+              "events": 7,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 581,
+              "model_hits": 192.12,
+              "model_capture_pct": 33.067
+            }
+          },
+          "500": {
+            "all": {
+              "events": 479,
+              "model_hits": 158.76,
+              "model_capture_pct": 33.144
+            },
+            "new_site": {
+              "events": 19,
+              "model_hits": 1.0,
+              "model_capture_pct": 5.263
+            },
+            "under_100m": {
+              "events": 318,
+              "model_hits": 145.96,
+              "model_capture_pct": 45.899
+            },
+            "100_to_250m": {
+              "events": 81,
+              "model_hits": 9.8,
+              "model_capture_pct": 12.099
+            },
+            "250_to_750m": {
+              "events": 73,
+              "model_hits": 3.0,
+              "model_capture_pct": 4.11
+            },
+            "over_750m": {
+              "events": 7,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 479,
+              "model_hits": 158.76,
+              "model_capture_pct": 33.144
+            }
+          }
+        }
+      }
+    },
+    {
+      "fold": 5,
+      "source_selected_arm": "site_new_only",
+      "source_selected_alpha": 0.75,
+      "new_events_250m": 84,
+      "radii": {
+        "site_new_only": {
+          "100": {
+            "all": {
+              "events": 560,
+              "model_hits": 205.38,
+              "model_capture_pct": 36.675
+            },
+            "new_site": {
+              "events": 217,
+              "model_hits": 31.18,
+              "model_capture_pct": 14.369
+            },
+            "under_100m": {
+              "events": 343,
+              "model_hits": 174.2,
+              "model_capture_pct": 50.787
+            },
+            "100_to_250m": {
+              "events": 130,
+              "model_hits": 21.42,
+              "model_capture_pct": 16.477
+            },
+            "250_to_750m": {
+              "events": 80,
+              "model_hits": 9.76,
+              "model_capture_pct": 12.2
+            },
+            "over_750m": {
+              "events": 7,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 558,
+              "model_hits": 205.38,
+              "model_capture_pct": 36.806
+            }
+          },
+          "250": {
+            "all": {
+              "events": 497,
+              "model_hits": 177.38,
+              "model_capture_pct": 35.69
+            },
+            "new_site": {
+              "events": 84,
+              "model_hits": 8.76,
+              "model_capture_pct": 10.429
+            },
+            "under_100m": {
+              "events": 310,
+              "model_hits": 152.46,
+              "model_capture_pct": 49.181
+            },
+            "100_to_250m": {
+              "events": 103,
+              "model_hits": 16.16,
+              "model_capture_pct": 15.689
+            },
+            "250_to_750m": {
+              "events": 77,
+              "model_hits": 8.76,
+              "model_capture_pct": 11.377
+            },
+            "over_750m": {
+              "events": 7,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 495,
+              "model_hits": 177.38,
+              "model_capture_pct": 35.834
+            }
+          },
+          "500": {
+            "all": {
+              "events": 426,
+              "model_hits": 154.38,
+              "model_capture_pct": 36.239
+            },
+            "new_site": {
+              "events": 16,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "under_100m": {
+              "events": 280,
+              "model_hits": 136.46,
+              "model_capture_pct": 48.736
+            },
+            "100_to_250m": {
+              "events": 78,
+              "model_hits": 12.16,
+              "model_capture_pct": 15.59
+            },
+            "250_to_750m": {
+              "events": 61,
+              "model_hits": 5.76,
+              "model_capture_pct": 9.443
+            },
+            "over_750m": {
+              "events": 7,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 424,
+              "model_hits": 154.38,
+              "model_capture_pct": 36.41
+            }
+          }
+        },
+        "site_new_plus_group_mask": {
+          "100": {
+            "all": {
+              "events": 560,
+              "model_hits": 201.36,
+              "model_capture_pct": 35.957
+            },
+            "new_site": {
+              "events": 217,
+              "model_hits": 27.16,
+              "model_capture_pct": 12.516
+            },
+            "under_100m": {
+              "events": 343,
+              "model_hits": 174.2,
+              "model_capture_pct": 50.787
+            },
+            "100_to_250m": {
+              "events": 130,
+              "model_hits": 21.16,
+              "model_capture_pct": 16.277
+            },
+            "250_to_750m": {
+              "events": 80,
+              "model_hits": 6.0,
+              "model_capture_pct": 7.5
+            },
+            "over_750m": {
+              "events": 7,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 558,
+              "model_hits": 201.36,
+              "model_capture_pct": 36.086
+            }
+          },
+          "250": {
+            "all": {
+              "events": 497,
+              "model_hits": 173.36,
+              "model_capture_pct": 34.881
+            },
+            "new_site": {
+              "events": 84,
+              "model_hits": 5.0,
+              "model_capture_pct": 5.952
+            },
+            "under_100m": {
+              "events": 310,
+              "model_hits": 152.2,
+              "model_capture_pct": 49.097
+            },
+            "100_to_250m": {
+              "events": 103,
+              "model_hits": 16.16,
+              "model_capture_pct": 15.689
+            },
+            "250_to_750m": {
+              "events": 77,
+              "model_hits": 5.0,
+              "model_capture_pct": 6.494
+            },
+            "over_750m": {
+              "events": 7,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 495,
+              "model_hits": 173.36,
+              "model_capture_pct": 35.022
+            }
+          },
+          "500": {
+            "all": {
+              "events": 426,
+              "model_hits": 151.36,
+              "model_capture_pct": 35.531
+            },
+            "new_site": {
+              "events": 16,
+              "model_hits": 1.0,
+              "model_capture_pct": 6.25
+            },
+            "under_100m": {
+              "events": 280,
+              "model_hits": 136.2,
+              "model_capture_pct": 48.643
+            },
+            "100_to_250m": {
+              "events": 78,
+              "model_hits": 12.16,
+              "model_capture_pct": 15.59
+            },
+            "250_to_750m": {
+              "events": 61,
+              "model_hits": 3.0,
+              "model_capture_pct": 4.918
+            },
+            "over_750m": {
+              "events": 7,
+              "model_hits": 0.0,
+              "model_capture_pct": 0.0
+            },
+            "raster_positive": {
+              "events": 424,
+              "model_hits": 151.36,
+              "model_capture_pct": 35.698
+            }
+          }
+        }
+      }
+    }
+  ],
+  "paired_intervals": {
+    "selected_minus_nearby_history": {
+      "district_bootstrap_points": [
+        0.822,
+        8.211
+      ],
+      "seven_day_bootstrap_points": [
+        0.511,
+        8.588
+      ]
+    },
+    "selected_minus_old_cnn": {
+      "district_bootstrap_points": [
+        -1.126,
+        7.284
+      ],
+      "seven_day_bootstrap_points": [
+        -1.561,
+        6.642
+      ]
+    }
+  },
+  "limits": [
+    "Q4 2025 has been repeatedly inspected; model development and site radius are exploratory",
+    "Intervals reflect district or seven-day variation, not all selection uncertainty",
+    "A report-site medoid is not verified flood extent",
+    "Unreported cells are unlabeled, not observed dry"
+  ]
+}

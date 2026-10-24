@@ -1,0 +1,14 @@
+{
+  "built_utc": "2026-10-23T09:46:01.734424+00:00",
+  "source": "/Users/Yodsaphat_Chomphuphong/bkk/data/thailand-250101.osm.pbf",
+  "osm_snapshot": "2025-01-01",
+  "method": "Closed OSM building ways clipped to 250 m UTM47N cells; footprint area/cell area, clipped to 1",
+  "features_seen_in_bbox": {
+    "amenities": 23412,
+    "roads": 417648,
+    "waterways": 6658,
+    "buildings": 199957
+  },
+  "nonzero_building_cells": 12296,
+  "mean_fraction_where_nonzero": 0.09807182103395462
+}

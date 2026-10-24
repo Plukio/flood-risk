@@ -1,0 +1,19 @@
+# Does the report model work better where more flood reports are available?
+
+**24 October 2026.** [View the two-line curve](artifacts/flood_open_weak_train/multi_target/citywide/q4_2025_report_history_vs_novel_capture_by_district.png). Each faint dot is one of Bangkok's **50 districts**. Districts are ordered by their count of **report-positive 250 m cell-days in the 365 days before 1 October 2025** (48–1,519); this is the report-history context available locally, **not the number of raw complaints or CNN training examples**. The line for each method is a rolling nine-district average weighted by the number of Q4 first-in-year positive cell-days. Larger dots have more Q4 positives.
+
+The vertical axis is the fraction of **Q4 2025 first-in-prior-year Traffy report-positive cell-days** captured by a daily **top 10% of cells within each district**. Both lines use the same 20% reserve of those inspection slots for novel cells. The teal baseline ranks those cells with the fixed nearby-history score. The orange model is the saved geographically held-out **center/block-masked CNN plus source-selected ordinary-neighbor score propagation**. Its weights were fitted in other districts; path settings were chosen on January–September source-district validation.
+
+| District grouping | Q4 novel positive cell-days | Nearby-history capture | Model capture | Model gain |
+| --- | ---: | ---: | ---: | ---: |
+| 25 districts with less local history | 476 | 10.55% | 11.28% | +0.73 points |
+| 25 districts with more local history | 1,188 | 6.81% | 9.57% | +2.76 points |
+| All 50, district-level 10% budgets | 1,664 | 7.88% | 10.06% | +2.18 points |
+
+The high-history half has a larger **pooled** model gain, but the district-level relationship is not monotonic. Spearman correlation between history count and each district's model-minus-baseline gain is **−0.067**. The high-minus-low gain difference is **+2.02 points**, with a district-resampling 95% interval of **−2.02 to +6.02 points**. Thus this chart does **not** show reliable evidence that merely having more local report data makes the model's advantage grow. District report count also reflects size, flood exposure, and willingness to report. The median district contributes only **23.5** Q4 novel positive cell-days, so individual dots move substantially with a few sites.
+
+**Why the earlier 14.263% is higher:** the plot gives **each district its own 10% budget**, as requested for an area-by-area curve. The prior experiment pooled cells across each held-out geographic fold, allowing the queue to put more than 10% of cells in some districts and fewer in others. Replaying that original fold-wide budget reproduces **14.263%** for the model and **11.946%** for nearby history across the same 1,664 positives. These are two budget rules, not a change in model quality.
+
+The Q4 outcome is a **report-site ranking**, not confirmed flood extent; unreported cells are unknown. This quarter has been inspected repeatedly during the project, so the pattern is exploratory. It cannot establish the causal effect of giving the CNN more training examples: the x-axis measures history in held-out districts, while CNN weight fitting excludes them.
+
+Files: [chart](artifacts/flood_open_weak_train/multi_target/citywide/q4_2025_report_history_vs_novel_capture_by_district.png), [one-row-per-district CSV](artifacts/flood_open_weak_train/multi_target/citywide/q4_2025_report_history_vs_novel_capture_by_district.csv), [full result JSON](artifacts/flood_open_weak_train/multi_target/citywide/q4_2025_report_history_vs_novel_capture_by_district.json), and [reproducible script](flood_citywide_data_count_capture_curve.py). Run `.venv/bin/python flood_citywide_data_count_capture_curve.py`. The script checks that its original fold-wide model replay matches the published **14.263%**.

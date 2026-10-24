@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Bangkok Q4 2025 | report queues on a map</title>
+<style>
+:root{font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;color:#193142;background:#f5f8f9}
+*{box-sizing:border-box}body{margin:0}header{background:#132e3e;color:#fff;padding:19px 24px}
+h1{font-size:22px;margin:0 0 5px}header p{margin:0;color:#d4e3e8;font-size:13px;line-height:1.45}
+main{max-width:1480px;margin:auto;padding:16px 20px 28px}.controls{display:flex;flex-wrap:wrap;align-items:end;gap:16px;background:#fff;border:1px solid #dae4e8;border-radius:12px;padding:14px 16px;box-shadow:0 1px 4px #20333b0b}
+label{display:flex;flex-direction:column;gap:5px;font-weight:650;font-size:12px;color:#3e5663}select,input{font:inherit}select{background:#fff;border:1px solid #cbd9de;border-radius:7px;padding:8px;min-width:160px}
+.slide{min-width:240px;flex:1;max-width:360px}.slide-row{display:flex;align-items:center;gap:12px}.slide-row input{width:100%;accent-color:#6154aa}.slide-row strong{min-width:50px;font-size:17px;color:#253f53}
+.check{display:flex;flex-direction:row;align-items:center;padding-bottom:8px;gap:6px}.check input{accent-color:#d26a26}
+.hint{font-size:12px;color:#607784;margin:10px 3px 16px;line-height:1.45}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(130px,1fr));gap:10px;margin-bottom:14px}
+.card{background:#fff;border:1px solid #dae4e8;border-radius:10px;padding:10px 14px}.card small{display:block;font-size:11px;color:#617885;margin-bottom:3px}.card strong{font-size:23px}.card.baseline strong{color:#21738a}.card.cnn strong{color:#6550a5}.card span{font-size:11px;color:#67808a;display:block}
+.maps{display:grid;grid-template-columns:1fr 1fr;gap:12px}.map-panel{background:#fff;border:1px solid #d7e3e8;border-radius:11px;padding:11px;min-width:0}
+.map-panel h2{font-size:16px;margin:0 0 2px}.map-panel p{font-size:11px;color:#67808a;margin:0 0 8px}
+.map-frame{position:relative;background:#e9f0f2;border-radius:7px;overflow:hidden}.map-frame canvas{display:block;width:100%;height:460px;cursor:crosshair}
+.tip{position:absolute;z-index:2;display:none;background:#102b3be9;color:white;padding:7px 9px;border-radius:6px;font-size:11px;line-height:1.4;pointer-events:none;white-space:pre-line;max-width:230px}
+.legend{display:flex;align-items:center;gap:16px;flex-wrap:wrap;font-size:11px;color:#536d79;margin-top:9px}.swatch{display:inline-block;width:11px;height:11px;border-radius:2px;vertical-align:-1px;margin-right:4px}.dot{border-radius:50%}
+.timeline{background:#fff;border:1px solid #dae4e8;border-radius:11px;margin-top:13px;padding:12px 14px}.timeline h2{font-size:15px;margin:0 0 7px}.timeline canvas{width:100%;height:130px;cursor:pointer}.foot{font-size:11px;color:#647c88;line-height:1.45;margin:13px 3px}
+@media(max-width:900px){.maps{grid-template-columns:1fr}.cards{grid-template-columns:repeat(2,1fr)}.map-frame canvas{height:380px}}
+</style>
+</head>
+<body>
+<header><h1>Bangkok flood-report queues · Q4 2025</h1><p>What was reported versus which 250 m cells each ranking would inspect. Both maps use the same daily capacity and district-fold test.</p></header>
+<main>
+ <div class="controls">
+  <label class="slide">Top area inspected each day<div class="slide-row"><input id="topArea" type="range" min="1" max="30" step="1" value="10"><strong id="topValue">10%</strong></div></label>
+  <label>Period<select id="day"><option value="-1">All Q4 · 92 daily queues</option></select></label>
+  <label>Zoom to district<select id="district"><option value="-1">All Bangkok</option></select></label>
+  <label>CNN ranking<select id="variant"><option value="original">Original masked CNN</option><option value="continuity">CNN + terrain neighbors</option></select></label>
+  <label>Map view<select id="mode"><option value="all">All selected cells</option><option value="difference">Only different picks</option></select></label>
+  <label class="check"><input id="reports" type="checkbox" checked>Show reported cells</label>
+  <label class="check"><input id="terrain" type="checkbox">Show possible terrain-linked cells</label>
+ </div>
+ <p class="hint">The slider changes the total daily inspection area. As in the backtest, <b>20% of slots are reserved for cells with no report in the previous 365 days</b>; both maps use the same slots. “Terrain-linked” outlines adjacent, unreported cells whose mean LiDAR height differs by ≤0.25 m from a reported cell. It is a possible extension, not observed water or a verified open path.</p>
+ <div class="cards">
+  <div class="card baseline"><small>History · all reported cells captured</small><strong id="baseAll">—</strong><span id="baseAllCount"></span></div>
+  <div class="card cnn"><small id="cnnAllLabel">Masked CNN · all reported cells captured</small><strong id="cnnAll">—</strong><span id="cnnAllCount"></span></div>
+  <div class="card baseline"><small>History · first-in-a-year captured</small><strong id="baseNovel">—</strong><span id="baseNovelCount"></span></div>
+  <div class="card cnn"><small id="cnnNovelLabel">Masked CNN · first-in-a-year captured</small><strong id="cnnNovel">—</strong><span id="cnnNovelCount"></span></div>
+ </div>
+ <div class="maps">
+  <section class="map-panel"><h2>Nearby report history</h2><p>Known sites: recent + nearby history. First-in-a-year sites: nearby history only.</p><div class="map-frame"><canvas id="baseMap"></canvas><div class="tip" id="baseTip"></div></div></section>
+  <section class="map-panel"><h2 id="cnnTitle">Masked CNN</h2><p id="cnnDescription">Same known-site ranking. First-in-a-year sites: CNN with terrain, roads, canals, cover and pre-day reports.</p><div class="map-frame"><canvas id="cnnMap"></canvas><div class="tip" id="cnnTip"></div></div></section>
+ </div>
+ <div class="legend"><span><i class="swatch" style="background:#2185a1"></i>History-selected cells</span><span><i class="swatch" style="background:#7761bd"></i>CNN-selected cells</span><span><i class="swatch dot" style="background:#eb7028"></i>Report-positive cells</span><span><i class="swatch" style="border:2px solid #34a6ad"></i>Possible terrain-linked cell</span><span>“Different picks” shows cells selected by one ranking more often.</span></div>
+ <section class="timeline"><h2>Q4 daily reports and captured cells</h2><canvas id="timeline"></canvas><div class="legend"><span><i class="swatch" style="background:#c4cdd0"></i>Reported</span><span><i class="swatch" style="background:#2185a1"></i>History captured</span><span><i class="swatch" style="background:#7761bd"></i>CNN captured</span><span>Click a date to inspect its map.</span></div></section>
+ <p class="foot">Traffy report-positive cells are observations of reports, not verified flood extent. An unreported cell is unknown, not observed dry. Scores use only pre-day inputs; Q4 reports appear solely as the orange outcome overlay. Terrain-linked candidate outlines use those Q4 reports and are retrospective, never model inputs. Mean-height similarity at 250 m cannot rule out walls, kerbs, canals, culverts or closed gates. The masked CNN arm shown here was examined on Q4 during earlier model selection, so these comparisons are exploratory. Map cells are a 250 m UTM grid; district outlines are simplified for display.</p>
+</main>
+<script>
+const META=__META__;
+const DATA_B64="__DATA__";
+const REC=META.record_bytes,N=META.n_cells,D=META.n_days;
+const ui={top:document.getElementById('topArea'),topValue:document.getElementById('topValue'),day:document.getElementById('day'),district:document.getElementById('district'),variant:document.getElementById('variant'),mode:document.getElementById('mode'),reports:document.getElementById('reports'),terrain:document.getElementById('terrain')};
+for(let d=0;d<D;d++){const o=document.createElement('option');o.value=d;o.textContent=META.dates[d];ui.day.append(o)}
+for(let i=0;i<META.districts.length;i++){const x=META.districts[i],o=document.createElement('option');o.value=i;o.textContent=x.name;ui.district.append(o)}
+const gridToCell=new Int32Array(META.width*META.height);gridToCell.fill(-1);
+for(let i=0;i<N;i++)gridToCell[META.row[i]*META.width+META.col[i]]=i;
+let view=null,summary=null,layout={};
+async function unpack(){
+ const binary=atob(DATA_B64),bytes=new Uint8Array(binary.length);
+ for(let i=0;i<binary.length;i++)bytes[i]=binary.charCodeAt(i);
+ const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
+ const buffer=await new Response(stream).arrayBuffer();
+ if(buffer.byteLength!==D*N*REC)throw Error('Packed map length does not match grid');
+ return new DataView(buffer);
+}
+function weight(low,high,capacity){return Math.max(0,Math.min(1,(capacity-low)/(high-low)))}
+function compute(){
+ const pct=Number(ui.top.value)/100,selectedDay=Number(ui.day.value),district=Number(ui.district.value);
+ const visible=i=>district<0||META.district_id[i]===district;
+ const base=new Float32Array(N),cnn=new Float32Array(N),baseOnly=new Float32Array(N),cnnOnly=new Float32Array(N),reported=new Uint16Array(N),terrainCandidate=new Uint16Array(N);
+ const daily=Array.from({length:D},()=>({positive:0,novel:0,b:0,c:0,bn:0,cn:0}));
+ for(let d=0;d<D;d++){
+  const counts=new Int32Array(5);
+  for(let i=0;i<N;i++)if(view.getUint8((d*N+i)*REC+12))counts[META.fold[i]]++;
+  const knownCap=new Float32Array(5),novelCap=new Float32Array(5);
+  for(let f=0;f<5;f++){
+   const budget=pct*META.fold_cells[f],known=META.fold_cells[f]-counts[f];
+   let nc=.2*budget,kc=budget-nc;
+   if(kc>known){nc+=kc-known;kc=known}
+   if(nc>counts[f]){kc+=nc-counts[f];nc=counts[f]}
+   knownCap[f]=kc;novelCap[f]=nc;
+  }
+  for(let i=0;i<N;i++){
+   const off=(d*N+i)*REC,novel=view.getUint8(off+12),report=view.getUint8(off+13),near=view.getUint8(off+14);
+   const cap=novel?novelCap[META.fold[i]]:knownCap[META.fold[i]];
+   const b=weight(view.getUint16(off,true),view.getUint16(off+2,true),cap);
+   const cOffset=ui.variant.value==='continuity'?8:4;
+   const c=weight(view.getUint16(off+cOffset,true),view.getUint16(off+cOffset+2,true),cap);
+   if(district<0||META.district_id[i]===district){
+    if(selectedDay<0||d===selectedDay){base[i]+=b;cnn[i]+=c;baseOnly[i]+=Math.max(0,b-c);cnnOnly[i]+=Math.max(0,c-b);reported[i]+=report;terrainCandidate[i]+=near}
+    daily[d].positive+=report;daily[d].novel+=report*novel;
+    daily[d].b+=b*report;daily[d].c+=c*report;
+    daily[d].bn+=b*report*novel;daily[d].cn+=c*report*novel;
+   }
+  }
+ }
+ const rows=selectedDay<0?daily:[daily[selectedDay]];
+ const sum=k=>rows.reduce((a,r)=>a+r[k],0);
+ const result={positive:sum('positive'),novel:sum('novel'),b:sum('b'),c:sum('c'),bn:sum('bn'),cn:sum('cn')};
+ if(pct===.1&&selectedDay<0&&district<0){
+  const e=META.reference;
+  const continuity=ui.variant.value==='continuity';
+  for(const [actual,expected] of [[result.b/result.positive,e.baseline_overall],[result.c/result.positive,continuity?e.continuity_overall:e.cnn_overall],[result.bn/result.novel,e.baseline_novel],[result.cn/result.novel,continuity?e.continuity_novel:e.cnn_novel]])
+   if(Math.abs(actual-expected)>0.00003)throw Error('Map selection differs from the published Q4 backtest');
+ }
+ summary={base,cnn,baseOnly,cnnOnly,reported,terrainCandidate,daily,result,selectedDay,district};
+ render();
+}
+function metric(id,countId,hits,total){
+ document.getElementById(id).textContent=total?(100*hits/total).toFixed(2)+'%':'—';
+ document.getElementById(countId).textContent=total?hits.toFixed(1)+' of '+total.toLocaleString()+' report-positive cell-days':'No positive cells in this view';
+}
+function setCanvas(canvas){
+ const rect=canvas.getBoundingClientRect(),ratio=window.devicePixelRatio||1;
+ const width=Math.max(1,Math.round(rect.width)),height=Math.max(1,Math.round(rect.height));
+ if(canvas.width!==Math.round(width*ratio)||canvas.height!==Math.round(height*ratio)){canvas.width=Math.round(width*ratio);canvas.height=Math.round(height*ratio)}
+ const g=canvas.getContext('2d');g.setTransform(ratio,0,0,ratio,0,0);return{g,width,height};
+}
+function boundsForDistrict(id){
+ if(id<0)return[-2,-2,META.width+2,META.height+2];
+ const paths=META.districts[id].paths;let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;
+ for(const path of paths)for(const p of path){x0=Math.min(x0,p[0]);x1=Math.max(x1,p[0]);y0=Math.min(y0,p[1]);y1=Math.max(y1,p[1])}
+ return[x0-8,y0-8,x1+8,y1+8];
+}
+function drawMap(canvasId,tipId,method){
+ const canvas=document.getElementById(canvasId),{g,width,height}=setCanvas(canvas);
+ const [x0,y0,x1,y1]=boundsForDistrict(summary.district);
+ const scale=Math.min((width-24)/(x1-x0),(height-24)/(y1-y0));
+ const ox=(width-scale*(x1-x0))/2-x0*scale,oy=(height-scale*(y1-y0))/2-y0*scale;
+ layout[canvasId]={scale,ox,oy};
+ g.fillStyle='#e7eff1';g.fillRect(0,0,width,height);
+ const selection=summary[ui.mode.value==='difference'?(method==='base'?'baseOnly':'cnnOnly'):method],days=summary.selectedDay<0?D:1;
+ const fill=method==='base'?[26,122,153]:[105,79,175];
+ for(let i=0;i<N;i++){
+  const x=META.col[i],y=META.row[i];if(x+1<x0||x>x1||y+1<y0||y>y1)continue;
+  const px=ox+x*scale,py=oy+y*scale;
+  const built=META.built[i]/255;
+  g.fillStyle=META.canal[i]?'#c8dfe5':META.road[i]?'#e3e6e5':`rgb(${Math.round(239-17*built)},${Math.round(242-17*built)},${Math.round(237-12*built)})`;
+  g.fillRect(px,py,Math.max(1,scale+.3),Math.max(1,scale+.3));
+  const f=selection[i]/days;
+  if(f>0){const alpha=summary.selectedDay<0?Math.min(.95,.17+.83*Math.pow(f,.35)):.15+.75*f;
+   g.fillStyle=`rgba(${fill[0]},${fill[1]},${fill[2]},${alpha})`;g.fillRect(px,py,Math.max(1,scale+.3),Math.max(1,scale+.3));}
+ }
+ g.strokeStyle='rgba(36,64,75,.68)';g.lineWidth=summary.district<0?.8:1.15;
+ for(const district of META.districts){for(const path of district.paths){g.beginPath();for(let j=0;j<path.length;j++){const px=ox+path[j][0]*scale,py=oy+path[j][1]*scale;if(j)g.lineTo(px,py);else g.moveTo(px,py)}g.stroke()}}
+ if(ui.terrain.checked){
+  g.strokeStyle='rgba(34,153,164,.58)';g.lineWidth=scale>3?1:.7;
+  for(let i=0;i<N;i++){const count=summary.terrainCandidate[i];if(!count)continue;
+   const x=ox+META.col[i]*scale,y=oy+META.row[i]*scale;
+   if(x+scale<0||x>width||y+scale<0||y>height)continue;
+   g.strokeRect(x+.3,y+.3,Math.max(1,scale-.6),Math.max(1,scale-.6));
+  }
+ }
+ if(ui.reports.checked){
+  g.fillStyle=summary.selectedDay<0?'rgba(232,105,34,.62)':'rgba(232,105,34,.9)';g.strokeStyle='rgba(255,255,255,.88)';g.lineWidth=.8;
+  for(let i=0;i<N;i++){const count=summary.reported[i];if(!count)continue;
+   const x=ox+(META.col[i]+.5)*scale,y=oy+(META.row[i]+.5)*scale;
+   if(x<0||x>width||y<0||y>height)continue;
+   const radius=summary.selectedDay<0?Math.min(3.4,.75+Math.sqrt(count)*.43):Math.min(5,Math.max(2.6,scale*.35));
+   g.beginPath();g.arc(x,y,radius,0,Math.PI*2);g.fill();if(summary.selectedDay>=0&&radius>2.4)g.stroke();
+  }
+ }
+ if(summary.district>=0){const d=META.districts[summary.district];g.fillStyle='#193c4e';g.font='bold 13px system-ui';g.fillText(d.name,12,20)}
+ g.fillStyle='#243f4d';g.font='bold 12px system-ui';g.fillText('N ↑',width-43,20);
+ canvas.onmousemove=ev=>{
+  const r=canvas.getBoundingClientRect(),col=Math.floor(((ev.clientX-r.left)-ox)/scale),row=Math.floor(((ev.clientY-r.top)-oy)/scale);
+  const tip=document.getElementById(tipId),i=(row>=0&&row<META.height&&col>=0&&col<META.width)?gridToCell[row*META.width+col]:-1;
+  if(i<0){tip.style.display='none';return}
+  const district=META.districts[META.district_id[i]].name;
+  const picked=summary[method][i],different=summary[method==='base'?'baseOnly':'cnnOnly'][i];
+  tip.textContent=`${district} · cell ${row}, ${col}\nReports: ${summary.reported[i]}${summary.selectedDay<0?' days':' today'}\nPossible terrain-linked: ${summary.terrainCandidate[i]}${summary.selectedDay<0?' days':' today'}\nSelected: ${picked.toFixed(1)}${summary.selectedDay<0?' of 92 days':' of 1 day'}\nDifferent picks: ${different.toFixed(1)}\nTerrain link is not verified flooding`;
+  tip.style.display='block';tip.style.left=Math.min(ev.clientX-r.left+10,r.width-240)+'px';tip.style.top=Math.max(4,ev.clientY-r.top-55)+'px';
+ };
+ canvas.onmouseleave=()=>document.getElementById(tipId).style.display='none';
+}
+function drawTimeline(){
+ const canvas=document.getElementById('timeline'),{g,width,height}=setCanvas(canvas),rows=summary.daily;
+ g.fillStyle='#fff';g.fillRect(0,0,width,height);
+ const max=Math.max(...rows.map(r=>r.positive),1),pad=25,plotW=width-2*pad,plotH=height-31;
+ g.strokeStyle='#dce5e8';g.beginPath();g.moveTo(pad,height-24);g.lineTo(width-pad,height-24);g.stroke();
+ const step=plotW/D,bar=Math.max(1,step*.74);
+ for(let d=0;d<D;d++){
+  const x=pad+d*step,h=plotH*rows[d].positive/max;
+  g.fillStyle=d===summary.selectedDay?'#8d9a9f':'#c9d2d5';g.fillRect(x,height-24-h,bar,h);
+ }
+ for(const [key,color] of [['b','#2185a1'],['c','#7761bd']]){
+  g.strokeStyle=color;g.lineWidth=2;g.beginPath();
+  for(let d=0;d<D;d++){const x=pad+d*step+bar/2,y=height-24-plotH*rows[d][key]/max;if(d)g.lineTo(x,y);else g.moveTo(x,y)}g.stroke();
+ }
+ g.fillStyle='#607783';g.font='11px system-ui';g.fillText('1 Oct',pad,height-5);g.fillText('1 Nov',pad+31*step,height-5);g.fillText('1 Dec',pad+61*step,height-5);
+ canvas.onclick=ev=>{const r=canvas.getBoundingClientRect(),d=Math.floor((ev.clientX-r.left-pad)/step);if(d>=0&&d<D){ui.day.value=String(d);compute()}};
+}
+function render(){
+ const x=summary.result;
+ const linked=ui.variant.value==='continuity';
+ document.getElementById('cnnTitle').textContent=linked?'CNN + terrain-neighbor continuity':'Masked CNN';
+ document.getElementById('cnnDescription').textContent=linked?'Saved CNN scores mixed with one-hop, similar-height neighbor scores; strength chosen on source districts. Not a flood-extent model.':'Same known-site ranking. First-in-a-year sites: CNN with terrain, roads, canals, cover and pre-day reports.';
+ document.getElementById('cnnAllLabel').textContent=(linked?'CNN + terrain neighbors':'Masked CNN')+' · all reported cells captured';
+ document.getElementById('cnnNovelLabel').textContent=(linked?'CNN + terrain neighbors':'Masked CNN')+' · first-in-a-year captured';
+ metric('baseAll','baseAllCount',x.b,x.positive);metric('cnnAll','cnnAllCount',x.c,x.positive);
+ metric('baseNovel','baseNovelCount',x.bn,x.novel);metric('cnnNovel','cnnNovelCount',x.cn,x.novel);
+ drawMap('baseMap','baseTip','base');drawMap('cnnMap','cnnTip','cnn');drawTimeline();
+}
+async function main(){
+ try{
+  const query=new URLSearchParams(location.search);
+  if(query.has('top'))ui.top.value=query.get('top');
+  if(query.has('day')){const index=META.dates.indexOf(query.get('day'));if(index>=0)ui.day.value=String(index)}
+  if(query.has('district')){const index=META.districts.findIndex(d=>d.code===query.get('district')||d.name.toLowerCase()===query.get('district').toLowerCase());if(index>=0)ui.district.value=String(index)}
+  if(query.get('mode')==='difference')ui.mode.value='difference';
+  if(query.get('variant')==='continuity')ui.variant.value='continuity';
+  if(query.get('terrain')==='1')ui.terrain.checked=true;
+  view=await unpack();ui.topValue.textContent=ui.top.value+'%';compute()
+ }
+ catch(error){document.querySelector('main').innerHTML='<p style="padding:20px;color:#a33">Could not load map data: '+String(error.message)+'</p>';console.error(error)}
+}
+for(const element of [ui.top,ui.day,ui.district,ui.variant])element.addEventListener('input',()=>{ui.topValue.textContent=ui.top.value+'%';if(view)compute()});
+ui.mode.addEventListener('change',()=>{if(summary)render()});
+ui.reports.addEventListener('change',()=>{if(summary)render()});
+ui.terrain.addEventListener('change',()=>{if(summary)render()});
+window.addEventListener('resize',()=>{if(summary)render()});
+main();
+</script>
+</body>
+</html>

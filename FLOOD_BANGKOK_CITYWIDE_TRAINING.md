@@ -1,0 +1,32 @@
+# Scaling Bangkok flood-complaint occurrence training to 50 districts
+
+## What was added
+
+The 2022–2024 [BMA Traffy Fondue archives](https://data.bangkok.go.th/) now supply a minimal direct flood-category extract for **all 49 districts other than Bang Kapi**. After date, coordinate, and district-polygon checks, this retains **18,524 reports**; the prior Bang Kapi extract contains **937**, for **19,461** across Bangkok in those three years. The cached 2025 extract adds **8,110 direct-category rows**. Every district has at least one older report. The source archives were streamed and discarded, and the new extract retains only timestamp, coordinates, district, and category. The [extract audit](data/flood_bangkok_transfer/traffy_flood_2022_2024_49_districts_audit.json) records annual and district counts. Rat Burana's different Thai spelling in the boundary file and Traffy archive was mapped explicitly; its older extract has 94 reports.
+
+The daily grid cache covers all **50 districts, 2022–2025**. The CNN target is whether a direct Traffy flood report's **100 m buffer touches a 250 m cell on a day**. This is complaint occurrence, not surveyed flooding or depth. An unreported cell-day is zero for this proxy, not a verified dry observation.
+
+All variants keep the same **17 input features plus a validity mask**: elevation, local elevation difference, slope, district-cell coverage, pump/gate proximity and pump count, earlier cell report count, season, and daily rain summaries. Terrain comes from [BMA LiDAR](https://cpudgiapp.bangkok.go.th/image/rest/services/DTM_LiDAR/ImageServer?f=pjson); rain is the previously cached [Open-Meteo historical gridded estimate](https://open-meteo.com/en/docs/historical-weather-api). The comparison changes training geography and duration, not feature definitions. It does not add satellite or road channels.
+
+## Backtest design
+
+The original training set contains **11 districts and 23,753 positive training cell-days**. The larger set contains **42 districts and 50,011 positive training cell-days** through **31 July 2025**. Eight districts were withheld from weight fitting: Dusit, Nong Chok, Min Buri, Thon Buri, Bangkok Noi, Bang Phlat, Chom Thong, and Bang Bon. A withheld district's earlier cell complaints still enter its history feature, and its August–September labels calibrate its score intercept. This is a test of transferring CNN weights with limited local information, not zero-shot deployment.
+
+Both models select their checkpoint with **Bang Kapi August–September 2025 average precision**. The first two have the same architecture, optimizer, random seed, and **10,800 sampled district-days per epoch**. The third gives the 42-district model longer training and patience while checking the same calibration block every 10,800 sampled district-days. All models use the same **October–December 2025** test cells and actual historical rain inputs. The historical benchmark ranks each cell by its January–September 2025 report-positive-day count. Each rank number below is the **mean of per-district Spearman correlations** between predicted and observed October–December positive-day counts. Daily AP is the mean of per-district cell-day average precision.
+
+| Method | Original 11 rank | Added 31 rank | Withheld 8 rank | Withheld 8 daily AP | Withheld 8 predicted / observed positive cell-days |
+|---|---:|---:|---:|---:|---:|
+| January–September cell history | 0.428 | 0.304 | **0.318** | — | — |
+| 11-district CNN, matched steps; selected epoch 8 | 0.423 | 0.311 | 0.293 | **0.0247** | 289 / 974 |
+| 42-district CNN, matched steps; selected epoch 10 | 0.422 | 0.309 | 0.288 | 0.0169 | 318 / 974 |
+| 42-district CNN, longer training; selected epoch 28 | **0.435** | **0.320** | 0.309 | 0.0194 | 438 / 974 |
+
+Longer 42-district training improves mean geographic rank in the districts included in weight fitting. On the **eight withheld districts**, it improves mean Spearman over the 11-district CNN by **0.016**, but wins in only **four of eight** districts and still trails the local history baseline by **0.009**. Its held-out daily AP is below the 11-district CNN, and it predicts only **45%** of the observed complaint-positive cell-days despite district-specific August–September intercept calibration. The short 42-district fit improves Bang Kapi daily AP, but its withheld-district metrics are weaker. More data therefore improves some fitted-area scores without demonstrating reliable transfer to a new district.
+
+Across all 50 districts, the longer 42-district CNN reaches mean cell-rank Spearman **0.344**, versus **0.333** for local history and **0.333** for the 11-district CNN. This all-district average includes the 42 districts used in fitting, so the withheld-eight result is the cleaner transfer check. Bang Kapi alone reaches **0.528** Spearman with the short 42-district fit, **0.506** with longer training, and **0.502** with the retrained matched 11-district fit; the earlier local-only CNN in the [prior experiment](FLOOD_BANGKOK_MULTIDISTRICT_MORE_YEARS.md) reached **0.540** under its own training setup. These are exploratory comparisons because the October–December period has been reused across this project.
+
+## Artifacts and limits
+
+The [full metrics](artifacts/flood_bangkapi_surface/surface_crossdistrict_terrain_cnn_citywide_v1_metrics.json), [learning-curve plot](artifacts/flood_bangkapi_surface/surface_crossdistrict_terrain_cnn_citywide_v1_learning_curves.png), [150-row district comparison](artifacts/flood_bangkapi_surface/surface_crossdistrict_terrain_cnn_citywide_v1_district_comparison.csv), and three `.pt` checkpoints are outputs of [the training script](flood_bangkok_spatial_cnn_citywide.py). The run command is `.venv/bin/python flood_bangkok_spatial_cnn_citywide.py`; add `--extra-steps` for the longer fit or `--reuse-checkpoints` to re-evaluate saved checkpoints. The minimal history extract comes from `.venv/bin/python flood_bangkok_traffy_history.py --all`.
+
+The model still learns **reporting behavior as well as weather and terrain**. Rain is one gridded district-point estimate, today's pump/gate inventory is applied to older years, and report absence does not prove a cell stayed dry. The withheld eight are one spatial split with one seed. These results support a larger complaint-ranking dataset and expose a transfer/calibration gap; they do not validate flood probabilities or a doubled-rain scenario.

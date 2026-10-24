@@ -1,0 +1,296 @@
+{
+  "built_utc": "2026-10-24T10:17:02+00:00",
+  "task": "Rank first-in-year reported sites among zero-own-history candidate cells, without a fixed discovery-slot reserve",
+  "selection": "CNN arm and nearby-history blend maximize mean new-site rank percentile on Jan-Sep 2025 source districts, without a shortlist cutoff",
+  "fold_selections": [
+    {
+      "fold": 1,
+      "arm": "site_new_only",
+      "alpha": 0.5,
+      "source_validation": {
+        "site_new_only": {
+          "mean_event_percentile": {
+            "0.0": 0.569867,
+            "0.25": 0.595539,
+            "0.5": 0.623965,
+            "0.75": 0.615881,
+            "1.0": 0.598173
+          },
+          "events": 712
+        },
+        "site_new_plus_group_mask": {
+          "mean_event_percentile": {
+            "0.0": 0.569867,
+            "0.25": 0.59031,
+            "0.5": 0.608598,
+            "0.75": 0.578386,
+            "1.0": 0.554895
+          },
+          "events": 712
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "arm": "site_new_only",
+      "alpha": 0.5,
+      "source_validation": {
+        "site_new_only": {
+          "mean_event_percentile": {
+            "0.0": 0.577877,
+            "0.25": 0.603343,
+            "0.5": 0.626741,
+            "0.75": 0.612079,
+            "1.0": 0.593846
+          },
+          "events": 655
+        },
+        "site_new_plus_group_mask": {
+          "mean_event_percentile": {
+            "0.0": 0.577877,
+            "0.25": 0.599497,
+            "0.5": 0.616812,
+            "0.75": 0.573085,
+            "1.0": 0.547138
+          },
+          "events": 655
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "arm": "site_new_only",
+      "alpha": 0.75,
+      "source_validation": {
+        "site_new_only": {
+          "mean_event_percentile": {
+            "0.0": 0.579201,
+            "0.25": 0.601362,
+            "0.5": 0.621908,
+            "0.75": 0.629137,
+            "1.0": 0.624023
+          },
+          "events": 739
+        },
+        "site_new_plus_group_mask": {
+          "mean_event_percentile": {
+            "0.0": 0.579201,
+            "0.25": 0.601435,
+            "0.5": 0.621017,
+            "0.75": 0.611202,
+            "1.0": 0.593136
+          },
+          "events": 739
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "arm": "site_new_only",
+      "alpha": 1.0,
+      "source_validation": {
+        "site_new_only": {
+          "mean_event_percentile": {
+            "0.0": 0.589291,
+            "0.25": 0.608736,
+            "0.5": 0.626856,
+            "0.75": 0.635889,
+            "1.0": 0.637028
+          },
+          "events": 727
+        },
+        "site_new_plus_group_mask": {
+          "mean_event_percentile": {
+            "0.0": 0.589291,
+            "0.25": 0.605374,
+            "0.5": 0.60884,
+            "0.75": 0.572348,
+            "1.0": 0.550074
+          },
+          "events": 727
+        }
+      }
+    },
+    {
+      "fold": 5,
+      "arm": "site_new_only",
+      "alpha": 0.75,
+      "source_validation": {
+        "site_new_only": {
+          "mean_event_percentile": {
+            "0.0": 0.56921,
+            "0.25": 0.591484,
+            "0.5": 0.611894,
+            "0.75": 0.618061,
+            "1.0": 0.612198
+          },
+          "events": 671
+        },
+        "site_new_plus_group_mask": {
+          "mean_event_percentile": {
+            "0.0": 0.56921,
+            "0.25": 0.587227,
+            "0.5": 0.596364,
+            "0.75": 0.580697,
+            "1.0": 0.562972
+          },
+          "events": 671
+        }
+      }
+    }
+  ],
+  "candidate_site_events": 393,
+  "candidate_cells": "Zero own-cell reports in preceding 365 days, separately for each district/day",
+  "mean_history_percentile": 0.6017,
+  "mean_cnn_percentile": 0.65702,
+  "mean_percentile_difference_district_interval": [
+    0.02748,
+    0.08004
+  ],
+  "curve": [
+    {
+      "fraction_of_zero_history_cells": 0.01,
+      "history_hits": 6.63,
+      "cnn_hits": 10.09,
+      "history_capture_pct": 1.687,
+      "cnn_capture_pct": 2.567,
+      "delta_points": 0.88
+    },
+    {
+      "fraction_of_zero_history_cells": 0.02,
+      "history_hits": 13.06,
+      "cnn_hits": 19.76,
+      "history_capture_pct": 3.323,
+      "cnn_capture_pct": 5.028,
+      "delta_points": 1.705
+    },
+    {
+      "fraction_of_zero_history_cells": 0.05,
+      "history_hits": 26.8,
+      "cnn_hits": 54.85,
+      "history_capture_pct": 6.819,
+      "cnn_capture_pct": 13.957,
+      "delta_points": 7.137
+    },
+    {
+      "fraction_of_zero_history_cells": 0.1,
+      "history_hits": 63.4,
+      "cnn_hits": 81.0,
+      "history_capture_pct": 16.132,
+      "cnn_capture_pct": 20.611,
+      "delta_points": 4.478
+    },
+    {
+      "fraction_of_zero_history_cells": 0.2,
+      "history_hits": 114.6,
+      "cnn_hits": 145.9,
+      "history_capture_pct": 29.16,
+      "cnn_capture_pct": 37.125,
+      "delta_points": 7.964
+    },
+    {
+      "fraction_of_zero_history_cells": 0.3,
+      "history_hits": 170.9,
+      "cnn_hits": 212.05,
+      "history_capture_pct": 43.486,
+      "cnn_capture_pct": 53.957,
+      "delta_points": 10.471
+    },
+    {
+      "fraction_of_zero_history_cells": 0.5,
+      "history_hits": 256.5,
+      "cnn_hits": 274.5643,
+      "history_capture_pct": 65.267,
+      "cnn_capture_pct": 69.864,
+      "delta_points": 4.597
+    }
+  ],
+  "density_bands": [
+    {
+      "density_group": "Q1 lowest",
+      "events": 120,
+      "history_mean_percentile": 0.66866,
+      "cnn_mean_percentile": 0.74162,
+      "delta_percentile_points": 7.297,
+      "prior_density_range": {
+        "districts": 10,
+        "min_positive_cell_days_per_100_cells": 9.35,
+        "max_positive_cell_days_per_100_cells": 38.69
+      }
+    },
+    {
+      "density_group": "Q2",
+      "events": 104,
+      "history_mean_percentile": 0.64256,
+      "cnn_mean_percentile": 0.66234,
+      "delta_percentile_points": 1.978,
+      "prior_density_range": {
+        "districts": 10,
+        "min_positive_cell_days_per_100_cells": 38.78,
+        "max_positive_cell_days_per_100_cells": 63.37
+      }
+    },
+    {
+      "density_group": "Q3",
+      "events": 58,
+      "history_mean_percentile": 0.54544,
+      "cnn_mean_percentile": 0.54343,
+      "delta_percentile_points": -0.2,
+      "prior_density_range": {
+        "districts": 10,
+        "min_positive_cell_days_per_100_cells": 69.98,
+        "max_positive_cell_days_per_100_cells": 95.93
+      }
+    },
+    {
+      "density_group": "Q4",
+      "events": 63,
+      "history_mean_percentile": 0.51731,
+      "cnn_mean_percentile": 0.61117,
+      "delta_percentile_points": 9.387,
+      "prior_density_range": {
+        "districts": 10,
+        "min_positive_cell_days_per_100_cells": 99.04,
+        "max_positive_cell_days_per_100_cells": 153.75
+      }
+    },
+    {
+      "density_group": "Q5 highest",
+      "events": 48,
+      "history_mean_percentile": 0.52455,
+      "cnn_mean_percentile": 0.63145,
+      "delta_percentile_points": 10.69,
+      "prior_density_range": {
+        "districts": 10,
+        "min_positive_cell_days_per_100_cells": 164.36,
+        "max_positive_cell_days_per_100_cells": 304.35
+      }
+    }
+  ],
+  "distance_bands": [
+    {
+      "distance_band": "250-500m",
+      "events": 271,
+      "history_mean_percentile": 0.6848,
+      "cnn_mean_percentile": 0.68933
+    },
+    {
+      "distance_band": "500-750m",
+      "events": 79,
+      "history_mean_percentile": 0.47393,
+      "cnn_mean_percentile": 0.59664
+    },
+    {
+      "distance_band": ">750m",
+      "events": 43,
+      "history_mean_percentile": 0.31274,
+      "cnn_mean_percentile": 0.56439
+    }
+  ],
+  "limits": [
+    "Novel-candidate ranking does not specify a field allocation",
+    "The 10% whole-district operational queue may favor familiar sites",
+    "Report medoids are not verified flood extent",
+    "Q4 2025 was repeatedly inspected during model development"
+  ]
+}

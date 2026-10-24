@@ -1,0 +1,293 @@
+{
+  "built_utc": "2026-10-24T14:21:06+00:00",
+  "task": "First-in-year reported-site capture among zero-own-history candidate cells, stratified by distance to nearest earlier report",
+  "candidate_pool": "Same zero-own-history cells in every panel; only site outcomes are split by distance",
+  "site_definition": "No earlier report within 250 m in the preceding 365 days",
+  "groups": [
+    {
+      "label": "All emerging sites",
+      "events": 393,
+      "districts_with_events": 49,
+      "history_mean_rank_percentile": 0.6017,
+      "cnn_mean_rank_percentile": 0.65702,
+      "rank_lift_points": 5.532,
+      "rank_lift_district_bootstrap_95pct_points": [
+        2.748,
+        8.004
+      ],
+      "curve": [
+        {
+          "fraction_of_unfamiliar_cells": 0.01,
+          "history_hits": 6.63,
+          "cnn_hits": 10.09,
+          "history_capture_pct": 1.687,
+          "cnn_capture_pct": 2.567,
+          "lift_points": 0.88
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.02,
+          "history_hits": 13.06,
+          "cnn_hits": 19.76,
+          "history_capture_pct": 3.323,
+          "cnn_capture_pct": 5.028,
+          "lift_points": 1.705
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.05,
+          "history_hits": 26.8,
+          "cnn_hits": 54.85,
+          "history_capture_pct": 6.819,
+          "cnn_capture_pct": 13.957,
+          "lift_points": 7.137
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.1,
+          "history_hits": 63.4,
+          "cnn_hits": 81.0,
+          "history_capture_pct": 16.132,
+          "cnn_capture_pct": 20.611,
+          "lift_points": 4.478
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.2,
+          "history_hits": 114.6,
+          "cnn_hits": 145.9,
+          "history_capture_pct": 29.16,
+          "cnn_capture_pct": 37.125,
+          "lift_points": 7.964
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.3,
+          "history_hits": 170.9,
+          "cnn_hits": 212.05,
+          "history_capture_pct": 43.486,
+          "cnn_capture_pct": 53.957,
+          "lift_points": 10.471
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.5,
+          "history_hits": 256.5,
+          "cnn_hits": 274.5643,
+          "history_capture_pct": 65.267,
+          "cnn_capture_pct": 69.864,
+          "lift_points": 4.597
+        }
+      ]
+    },
+    {
+      "label": "250-500 m from an earlier report",
+      "events": 271,
+      "districts_with_events": 49,
+      "history_mean_rank_percentile": 0.6848,
+      "cnn_mean_rank_percentile": 0.68933,
+      "rank_lift_points": 0.453,
+      "rank_lift_district_bootstrap_95pct_points": [
+        -3.215,
+        3.565
+      ],
+      "curve": [
+        {
+          "fraction_of_unfamiliar_cells": 0.01,
+          "history_hits": 6.63,
+          "cnn_hits": 9.09,
+          "history_capture_pct": 2.446,
+          "cnn_capture_pct": 3.354,
+          "lift_points": 0.908
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.02,
+          "history_hits": 13.06,
+          "cnn_hits": 17.76,
+          "history_capture_pct": 4.819,
+          "cnn_capture_pct": 6.554,
+          "lift_points": 1.734
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.05,
+          "history_hits": 26.8,
+          "cnn_hits": 47.85,
+          "history_capture_pct": 9.889,
+          "cnn_capture_pct": 17.657,
+          "lift_points": 7.768
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.1,
+          "history_hits": 60.4,
+          "cnn_hits": 67.0,
+          "history_capture_pct": 22.288,
+          "cnn_capture_pct": 24.723,
+          "lift_points": 2.435
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.2,
+          "history_hits": 106.6,
+          "cnn_hits": 111.9,
+          "history_capture_pct": 39.336,
+          "cnn_capture_pct": 41.292,
+          "lift_points": 1.956
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.3,
+          "history_hits": 147.9,
+          "cnn_hits": 162.05,
+          "history_capture_pct": 54.576,
+          "cnn_capture_pct": 59.797,
+          "lift_points": 5.221
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.5,
+          "history_hits": 207.5,
+          "cnn_hits": 203.5643,
+          "history_capture_pct": 76.568,
+          "cnn_capture_pct": 75.116,
+          "lift_points": -1.452
+        }
+      ]
+    },
+    {
+      "label": "500-750 m from an earlier report",
+      "events": 79,
+      "districts_with_events": 29,
+      "history_mean_rank_percentile": 0.47393,
+      "cnn_mean_rank_percentile": 0.59664,
+      "rank_lift_points": 12.271,
+      "rank_lift_district_bootstrap_95pct_points": [
+        6.436,
+        18.56
+      ],
+      "curve": [
+        {
+          "fraction_of_unfamiliar_cells": 0.01,
+          "history_hits": 0.0,
+          "cnn_hits": 1.0,
+          "history_capture_pct": 0.0,
+          "cnn_capture_pct": 1.266,
+          "lift_points": 1.266
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.02,
+          "history_hits": 0.0,
+          "cnn_hits": 2.0,
+          "history_capture_pct": 0.0,
+          "cnn_capture_pct": 2.532,
+          "lift_points": 2.532
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.05,
+          "history_hits": 0.0,
+          "cnn_hits": 6.0,
+          "history_capture_pct": 0.0,
+          "cnn_capture_pct": 7.595,
+          "lift_points": 7.595
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.1,
+          "history_hits": 3.0,
+          "cnn_hits": 11.0,
+          "history_capture_pct": 3.797,
+          "cnn_capture_pct": 13.924,
+          "lift_points": 10.127
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.2,
+          "history_hits": 7.0,
+          "cnn_hits": 25.0,
+          "history_capture_pct": 8.861,
+          "cnn_capture_pct": 31.646,
+          "lift_points": 22.785
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.3,
+          "history_hits": 21.0,
+          "cnn_hits": 34.0,
+          "history_capture_pct": 26.582,
+          "cnn_capture_pct": 43.038,
+          "lift_points": 16.456
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.5,
+          "history_hits": 38.0,
+          "cnn_hits": 48.0,
+          "history_capture_pct": 48.101,
+          "cnn_capture_pct": 60.759,
+          "lift_points": 12.658
+        }
+      ]
+    },
+    {
+      "label": ">750 m from an earlier report",
+      "events": 43,
+      "districts_with_events": 17,
+      "history_mean_rank_percentile": 0.31274,
+      "cnn_mean_rank_percentile": 0.56439,
+      "rank_lift_points": 25.165,
+      "rank_lift_district_bootstrap_95pct_points": [
+        18.692,
+        32.356
+      ],
+      "curve": [
+        {
+          "fraction_of_unfamiliar_cells": 0.01,
+          "history_hits": 0.0,
+          "cnn_hits": 0.0,
+          "history_capture_pct": 0.0,
+          "cnn_capture_pct": 0.0,
+          "lift_points": 0.0
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.02,
+          "history_hits": 0.0,
+          "cnn_hits": 0.0,
+          "history_capture_pct": 0.0,
+          "cnn_capture_pct": 0.0,
+          "lift_points": 0.0
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.05,
+          "history_hits": 0.0,
+          "cnn_hits": 1.0,
+          "history_capture_pct": 0.0,
+          "cnn_capture_pct": 2.326,
+          "lift_points": 2.326
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.1,
+          "history_hits": 0.0,
+          "cnn_hits": 3.0,
+          "history_capture_pct": 0.0,
+          "cnn_capture_pct": 6.977,
+          "lift_points": 6.977
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.2,
+          "history_hits": 1.0,
+          "cnn_hits": 9.0,
+          "history_capture_pct": 2.326,
+          "cnn_capture_pct": 20.93,
+          "lift_points": 18.605
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.3,
+          "history_hits": 2.0,
+          "cnn_hits": 16.0,
+          "history_capture_pct": 4.651,
+          "cnn_capture_pct": 37.209,
+          "lift_points": 32.558
+        },
+        {
+          "fraction_of_unfamiliar_cells": 0.5,
+          "history_hits": 11.0,
+          "cnn_hits": 23.0,
+          "history_capture_pct": 25.581,
+          "cnn_capture_pct": 53.488,
+          "lift_points": 27.907
+        }
+      ]
+    }
+  ],
+  "limits": [
+    "The >750 m group has only 43 site events",
+    "District bootstrap intervals do not account for Q4 model-development reuse",
+    "Reported sites are not independently verified wet ground"
+  ]
+}

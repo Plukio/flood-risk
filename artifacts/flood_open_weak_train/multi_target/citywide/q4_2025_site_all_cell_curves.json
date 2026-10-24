@@ -1,0 +1,230 @@
+{
+  "built_utc": "2026-10-24T14:09:38+00:00",
+  "task": "Full district all-cell queues without an unfamiliar-cell slot reserve",
+  "history_score": "log1p(365d reports)+0.4 log1p(90d reports)+0.4 log1p(250m-smoothed 365d reports)",
+  "model_score": "history_score + source-selected strength * CNN residual for cells with zero own 365d reports; familiar cells keep history_score",
+  "source_selection": "Residual strength in [0,1] maximizes mean first-in-year site rank percentile across all cells on Jan-Sep 2025 source districts; CNN arm came from quota-free source selection. The range shrinks or preserves the trained residual without extrapolating it.",
+  "fold_choices": [
+    {
+      "fold": 1,
+      "arm": "site_new_only",
+      "source_new_site_events": 802,
+      "source_mean_rank_by_strength": {
+        "0.0": 0.426061,
+        "0.25": 0.454305,
+        "0.5": 0.445727,
+        "0.75": 0.441774,
+        "1.0": 0.440194
+      },
+      "selected_strength": 0.25
+    },
+    {
+      "fold": 2,
+      "arm": "site_new_only",
+      "source_new_site_events": 739,
+      "source_mean_rank_by_strength": {
+        "0.0": 0.428325,
+        "0.25": 0.451976,
+        "0.5": 0.440879,
+        "0.75": 0.435249,
+        "1.0": 0.432241
+      },
+      "selected_strength": 0.25
+    },
+    {
+      "fold": 3,
+      "arm": "site_new_only",
+      "source_new_site_events": 836,
+      "source_mean_rank_by_strength": {
+        "0.0": 0.448632,
+        "0.25": 0.477505,
+        "0.5": 0.478008,
+        "0.75": 0.477447,
+        "1.0": 0.476685
+      },
+      "selected_strength": 0.5
+    },
+    {
+      "fold": 4,
+      "arm": "site_new_only",
+      "source_new_site_events": 817,
+      "source_mean_rank_by_strength": {
+        "0.0": 0.449849,
+        "0.25": 0.479199,
+        "0.5": 0.483217,
+        "0.75": 0.481889,
+        "1.0": 0.479834
+      },
+      "selected_strength": 0.5
+    },
+    {
+      "fold": 5,
+      "arm": "site_new_only",
+      "source_new_site_events": 750,
+      "source_mean_rank_by_strength": {
+        "0.0": 0.439333,
+        "0.25": 0.470274,
+        "0.5": 0.470347,
+        "0.75": 0.46869,
+        "1.0": 0.466957
+      },
+      "selected_strength": 0.5
+    }
+  ],
+  "curves": {
+    "all_sites": [
+      {
+        "fraction_all_cells": 0.01,
+        "events": 2326,
+        "history_hits": 197.2,
+        "cnn_hits": 197.2,
+        "history_capture_pct": 8.478,
+        "cnn_capture_pct": 8.478,
+        "cnn_minus_history_points": 0.0
+      },
+      {
+        "fraction_all_cells": 0.02,
+        "events": 2326,
+        "history_hits": 316.48,
+        "cnn_hits": 316.48,
+        "history_capture_pct": 13.606,
+        "cnn_capture_pct": 13.606,
+        "cnn_minus_history_points": 0.0
+      },
+      {
+        "fraction_all_cells": 0.05,
+        "events": 2326,
+        "history_hits": 574.7,
+        "cnn_hits": 574.7,
+        "history_capture_pct": 24.708,
+        "cnn_capture_pct": 24.708,
+        "cnn_minus_history_points": 0.0
+      },
+      {
+        "fraction_all_cells": 0.1,
+        "events": 2326,
+        "history_hits": 891.3,
+        "cnn_hits": 891.3,
+        "history_capture_pct": 38.319,
+        "cnn_capture_pct": 38.319,
+        "cnn_minus_history_points": 0.0
+      },
+      {
+        "fraction_all_cells": 0.15,
+        "events": 2326,
+        "history_hits": 1121.4,
+        "cnn_hits": 1117.4,
+        "history_capture_pct": 48.212,
+        "cnn_capture_pct": 48.04,
+        "cnn_minus_history_points": -0.172
+      },
+      {
+        "fraction_all_cells": 0.2,
+        "events": 2326,
+        "history_hits": 1296.8,
+        "cnn_hits": 1292.8,
+        "history_capture_pct": 55.752,
+        "cnn_capture_pct": 55.58,
+        "cnn_minus_history_points": -0.172
+      },
+      {
+        "fraction_all_cells": 0.3,
+        "events": 2326,
+        "history_hits": 1578.7,
+        "cnn_hits": 1579.2,
+        "history_capture_pct": 67.872,
+        "cnn_capture_pct": 67.893,
+        "cnn_minus_history_points": 0.021
+      },
+      {
+        "fraction_all_cells": 0.5,
+        "events": 2326,
+        "history_hits": 1945.5,
+        "cnn_hits": 1933.0,
+        "history_capture_pct": 83.641,
+        "cnn_capture_pct": 83.104,
+        "cnn_minus_history_points": -0.537
+      }
+    ],
+    "first_in_year_sites": [
+      {
+        "fraction_all_cells": 0.01,
+        "events": 471,
+        "history_hits": 0.0,
+        "cnn_hits": 0.0,
+        "history_capture_pct": 0.0,
+        "cnn_capture_pct": 0.0,
+        "cnn_minus_history_points": 0.0
+      },
+      {
+        "fraction_all_cells": 0.02,
+        "events": 471,
+        "history_hits": 1.0,
+        "cnn_hits": 1.0,
+        "history_capture_pct": 0.212,
+        "cnn_capture_pct": 0.212,
+        "cnn_minus_history_points": 0.0
+      },
+      {
+        "fraction_all_cells": 0.05,
+        "events": 471,
+        "history_hits": 6.0,
+        "cnn_hits": 6.0,
+        "history_capture_pct": 1.274,
+        "cnn_capture_pct": 1.274,
+        "cnn_minus_history_points": 0.0
+      },
+      {
+        "fraction_all_cells": 0.1,
+        "events": 471,
+        "history_hits": 16.5,
+        "cnn_hits": 16.5,
+        "history_capture_pct": 3.503,
+        "cnn_capture_pct": 3.503,
+        "cnn_minus_history_points": 0.0
+      },
+      {
+        "fraction_all_cells": 0.15,
+        "events": 471,
+        "history_hits": 35.0,
+        "cnn_hits": 33.0,
+        "history_capture_pct": 7.431,
+        "cnn_capture_pct": 7.006,
+        "cnn_minus_history_points": -0.425
+      },
+      {
+        "fraction_all_cells": 0.2,
+        "events": 471,
+        "history_hits": 52.6,
+        "cnn_hits": 53.6,
+        "history_capture_pct": 11.168,
+        "cnn_capture_pct": 11.38,
+        "cnn_minus_history_points": 0.212
+      },
+      {
+        "fraction_all_cells": 0.3,
+        "events": 471,
+        "history_hits": 102.0,
+        "cnn_hits": 106.5,
+        "history_capture_pct": 21.656,
+        "cnn_capture_pct": 22.611,
+        "cnn_minus_history_points": 0.955
+      },
+      {
+        "fraction_all_cells": 0.5,
+        "events": 471,
+        "history_hits": 209.0,
+        "cnn_hits": 219.5,
+        "history_capture_pct": 44.374,
+        "cnn_capture_pct": 46.603,
+        "cnn_minus_history_points": 2.229
+      }
+    ]
+  },
+  "limits": [
+    "Scores on unfamiliar and familiar cells are combined by a source-selected residual strength, not a forced slot quota",
+    "Q4 2025 and the 250m site definition were previously inspected",
+    "Reported site events are proxies for flood problems, not verified water extent",
+    "Cell-count budgets do not imply feasible field visits"
+  ]
+}
