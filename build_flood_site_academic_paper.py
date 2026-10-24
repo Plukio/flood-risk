@@ -309,14 +309,14 @@ with PdfPages(OUT, metadata={
             "field triage; Bangkok", size=8.4, color=MID, va="top")
     y -= .39
     y = section(ax, "1", "Introduction", y)
-    y = para(ax, "BMA's road-flood records include a November 2025 event with "
-             "waterlogging lasting several hours on Ratchadaphisek Road [1]. "
-             "Its FY2026 drainage budget and annual action plan put substantial "
-             "resources and explicit targets behind pipes, water control, canals, "
-             "and identified flood-risk points [2,3]. A map shortlist could "
-             "help decide which places warrant closer attention as that work "
-             "continues. Ranking only past complaints may repeatedly select "
-             "familiar sites while overlooking emerging ones.", y)
+    y = para(ax, "Bangkok's FY2026 drainage budget and annual action plan put "
+             "substantial resources and explicit targets behind pipes, water "
+             "control, canals, and identified flood-risk points [2,3]. Yet Q4 "
+             "2025 brought 2,326 grouped Traffy flood-report site events across "
+             "Bangkok, including 471 first-in-year sites [1,8]. Preparing only "
+             "for familiar hotspots leaves emerging locations harder to find. "
+             "A ranked map could direct district attention to them before the "
+             "next storm.", y)
     y = para(ax, "The ranking question is concrete: as a district reviews more "
              "map squares, which new trouble spots enter the list first? "
              "Past reports are a useful starting point [4]. "
@@ -964,7 +964,7 @@ with PdfPages(OUT, metadata={
             color=BLUE, weight="bold", va="top")
     y -= .34
     refs = [
-        "[1] BMA Department of Drainage and Sewerage (DDS), Major-road flood statistics, 2025 CSV, incident 581 (13 Nov 2025). https://data.bangkok.go.th/dataset/frd_dds (accessed 24 Oct 2026).",
+        "[1] BMA, Traffy Fondue 2025 public report data. https://data.bangkok.go.th/dataset/traffy-fondue-2568 (accessed 24 Oct 2026). Grouped-site counts follow [8].",
         "[2] BMA, FY2569 budget ordinance, DDS volume 69015, pp. 1 and 3. https://data.bangkok.go.th/dataset/2569 (accessed 24 Oct 2026).",
         "[3] BMA DDS, FY2569 annual action plan, pp. 2, 11-14 and 83. https://dds.bangkok.go.th/content/doc_download_count.php?id=11062 (accessed 24 Oct 2026).",
         "[4] FLOOD_CITYWIDE_HISTORY_RANKER.md and candidate_cells_by_district_250m.csv. Report-history benchmark and 10% shortlist-size audit.",
