@@ -309,14 +309,14 @@ with PdfPages(OUT, metadata={
             "field triage; Bangkok", size=8.4, color=MID, va="top")
     y -= .39
     y = section(ax, "1", "Introduction", y)
-    y = para(ax, "Bangkok's FY2026 drainage budget and annual action plan put "
-             "substantial resources and explicit targets behind pipes, water "
-             "control, canals, and identified flood-risk points [2,3]. Yet Q4 "
-             "2025 brought 2,326 grouped Traffy flood-report site events across "
-             "Bangkok, including 471 first-in-year sites [1,8]. Preparing only "
-             "for familiar hotspots leaves emerging locations harder to find. "
-             "The proposed spatial model could help districts prioritize checks "
-             "at such locations before the next storm.", y)
+    y = para(ax, "Bangkok's FY2026 (October 2025–September 2026) drainage budget "
+             "and annual action plan set substantial spending and targets for "
+             "pipes, water control, canals, and known flood-risk points [2,3]. "
+             "In its first quarter (calendar Q4 2025), our grouping of Traffy "
+             "reports finds 2,326 flood-site events across Bangkok, including "
+             "471 first-in-year sites [1,8]. The proposed spatial model could "
+             "help districts prioritize checks beyond familiar hotspots before "
+             "the next storm.", y)
     y = para(ax, "The ranking question is concrete: as a district reviews more "
              "map squares, which new trouble spots enter the list first? "
              "Past reports are a useful starting point [4]. "
